@@ -1,7 +1,13 @@
+import { auth } from "@/auth";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
-export default function Layout({children}: {children: ReactNode}): React.JSX.Element {
+export default async function Layout({children}: {children: ReactNode}): Promise<React.JSX.Element> {
+    const session = await auth()
+
+    if(session) redirect("/")
+
     return(
         <main className="auth-container">
             <section className="auth-form">

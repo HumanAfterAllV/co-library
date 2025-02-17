@@ -90,7 +90,7 @@ export const navigationLinks = [
     },
     {
       id: 3,
-      title: "You Don't Know JS: Scope & Closures",
+      title: "Scope & Closures",
       author: "Kyle Simpson",
       genre: "Computer Science / JavaScript",
       rating: 4.7,

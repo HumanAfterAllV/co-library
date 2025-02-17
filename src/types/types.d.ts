@@ -13,3 +13,10 @@ declare interface Book {
     summary: string;
     isLoanedBook?: boolean;
 }
+
+interface AuthCredentials {
+    fullName: string;
+    email: string;
+    password: string;
+    universityId: number;
+}

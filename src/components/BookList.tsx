@@ -1,5 +1,4 @@
 import BookCard from "./BookCard";
-import BookCoverSvg from "./BookCoverSvg";
 
 interface BookListProps {
     title: string;

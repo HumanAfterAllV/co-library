@@ -1,12 +1,16 @@
 "use client"
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { cn, getInitials } from "@/lib/utils";
 
-export default function Header(): React.JSX.Element {
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Session } from "next-auth";
+
+
+export default function Header({session} : {session: Session}): React.JSX.Element {
 
     const pathname = usePathname();
 
@@ -19,6 +23,13 @@ export default function Header(): React.JSX.Element {
                 <li>
                     <Link href="/library" className={cn("text-base cursor-pointer capitalize", pathname === "/library" ? "text-light-200" : "text-light-100")}>
                         Library
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/my-profile">
+                        <Avatar >
+                            <AvatarFallback>{getInitials(session?.user?.name || "IN")}</AvatarFallback>
+                        </Avatar>
                     </Link>
                 </li>
             </ul>
