@@ -23,7 +23,7 @@ export const sendEmail = async ({email, subject, message}: SendEmailProps) => {
             provider: resend({token: config.env.resendToken}),
         },
         body:{
-            from: "HumanDev <hello.humandev.pro>",
+            from: "HumanDev <contact@humandev.pro>",
             to: [email],
             subject: subject,
             html: message,
