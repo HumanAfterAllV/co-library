@@ -9,6 +9,8 @@ import { headers } from "next/headers";
 
 import rateLimit from "../ratelimit";
 import { redirect } from "next/navigation";
+import { workflowClient } from "../workflow";
+import { config } from "../config";
 
 
 export const signInWithCredentials = async (params: Pick<AuthCredentials, "email" | "password">): Promise<{ success: boolean, error?: string }> => {
@@ -83,9 +85,18 @@ export const signUp = async (params: AuthCredentials): Promise<{ success: boolea
             universityId,
         });
 
+        await workflowClient.trigger({
+            url: `${config.env.apiEndpoint}/api/workflows/onboarding`,
+            body: {
+                email,
+                fullName,
+            }
+        });
+
         return {
             success: true,
         };
+
     } 
     catch (e) {
         console.error(e, "Error signing up user");
